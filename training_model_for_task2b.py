@@ -10,7 +10,7 @@ from torch.utils.data import DataLoader
 model = models.resnet18(weights='IMAGENET1K_V1' )
 numf = model.fc.in_features
 model.fc = nn.Sequential(nn.Linear(512,5),nn.Softmax())
-data_transformation =  transforms.Compose([transforms.Resize(size=(300,300)), transforms.ToTensor()])
+data_transformation =  transforms.Compose([transforms.Resize(size=(400,400)), transforms.ToTensor()])
 data_directory = '/Users/chiddu/Documents/E-yrc/Input_data'
 input_image_dataset = datasets.ImageFolder(data_directory, transform= data_transformation)
 input_dataloader = DataLoader(input_image_dataset,batch_size=10, shuffle= True)
