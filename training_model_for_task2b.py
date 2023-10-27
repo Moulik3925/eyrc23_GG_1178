@@ -9,10 +9,8 @@ from torch.utils.data import DataLoader
 
 model = models.resnet18(weights='IMAGENET1K_V1' )
 numf = model.fc.in_features
-for parameters in model.parameters():
-    parameters.requires_grad = False
 model.fc = nn.Sequential(nn.Linear(512,5),nn.Softmax())
-data_transformation =  transforms.Compose([transforms.Resize(size=(150,150)), transforms.ToTensor()])
+data_transformation =  transforms.Compose([transforms.Resize(size=(300,300)), transforms.ToTensor()])
 data_directory = '/Users/chiddu/Documents/E-yrc/Input_data'
 input_image_dataset = datasets.ImageFolder(data_directory, transform= data_transformation)
 input_dataloader = DataLoader(input_image_dataset,batch_size=10, shuffle= True)
@@ -23,7 +21,7 @@ output_dataloader = DataLoader(output_image_dataset,batch_size=1, shuffle= True)
 
 lossfunction = nn.CrossEntropyLoss()
 optimiser = optim.SGD(model.parameters(), lr=0.01)
-num_of_epochs = 5
+num_of_epochs = 10
 #print(input_image_dataset.classes)
 #print(input_image_dataset[0])
 
