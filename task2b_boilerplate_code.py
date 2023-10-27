@@ -32,9 +32,11 @@ import sys
 import os
 
 # Additional Imports
-'''
-You can import your required libraries here
-'''
+import torchvision
+import torch
+from torchvision import transforms 
+import torchvision.transforms.functional as fn
+from PIL import Image
 
 # DECLARING VARIABLES (DO NOT CHANGE/REMOVE THESE VARIABLES)
 detected_list = []
@@ -45,6 +47,7 @@ img_name_list = []
 '''
 You can delare the necessary variables here
 '''
+
 
 # EVENT NAMES
 '''
@@ -81,10 +84,24 @@ destroyed_building = "destroyedbuilding"
     event = classify_event(image_path)
     '''
 def classify_event(image):
-    '''
-    ADD YOUR CODE HERE
-    '''
+    data_transformation =  transforms.Compose([transforms.Resize(size=(150,150)), transforms.PILToTensor()])
+    img = Image.open(image)
+    img_tensor = data_transformation(img)
+    model = torch.load('/Users/chiddu/Documents/E-yrc/task2B/trainedmodel.pth')
+    model.eval()
+    outputs = model(img_tensor)
+    outputs = torch.argmax(outputs,1)
     event = "variable to return the detected function"
+    if(outputs== torch.tensor([0])):
+        event = combat
+    if(outputs== torch.tensor([1])):
+        event = destroyed_building
+    if(outputs==torch.tensor([2])):
+        event = fire
+    if(outputs==torch.tensor([3])):
+        event = rehab
+    if(outputs==torch.tensor([4])):
+        event = military_vehicles
     return event
 
 # ADDITIONAL FUNCTIONS

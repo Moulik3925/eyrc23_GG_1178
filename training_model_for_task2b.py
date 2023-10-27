@@ -52,7 +52,7 @@ def testing_the_model(model,output_dataloader ):
     total = 0
     for image,labels in output_dataloader:
         outputs = model(image)
-        outputs = torch.argmax(outputs,1)
+        outputs = torch.argmax(outputs,1) #outputs will become tensor with only one value, which is the index of max value out of 5 values
         if outputs==labels :
             correct = correct+1
         total= total+1
