@@ -84,7 +84,7 @@ destroyed_building = "destroyedbuilding"
     event = classify_event(image_path)
     '''
 def classify_event(image):
-    data_transformation =  transforms.Compose([transforms.Resize(size=(150,150)), transforms.PILToTensor()])
+    data_transformation =  transforms.Compose([transforms.Resize(size=(600,600)), transforms.PILToTensor()])
     img = Image.open(image)
     img_tensor = data_transformation(img)
     model = torch.load('/Users/chiddu/Documents/E-yrc/task2B/trainedmodel.pth')
