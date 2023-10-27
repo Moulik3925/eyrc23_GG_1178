@@ -64,6 +64,7 @@ def testing_the_model(model,output_dataloader ):
 if __name__ == "__main__":
     model= training_the_model(model,input_dataloader,lossfunction,optimiser)
     testing_the_model(model,output_dataloader)
+    torch.save(model,'/Users/chiddu/Documents/E-yrc/task2B/trainedmodel.pth')
 
 
 
