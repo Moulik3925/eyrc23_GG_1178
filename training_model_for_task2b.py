@@ -20,8 +20,8 @@ output_image_dataset = datasets.ImageFolder(data_directory_output, transform= da
 output_dataloader = DataLoader(output_image_dataset,batch_size=1, shuffle= True)
 
 lossfunction = nn.CrossEntropyLoss()
-optimiser = optim.SGD(model.parameters(), lr=0.01)
-num_of_epochs = 10
+optimiser = optim.SGD(model.parameters(), lr=0.005)
+num_of_epochs = 15
 #print(input_image_dataset.classes)
 #print(input_image_dataset[0])
 
