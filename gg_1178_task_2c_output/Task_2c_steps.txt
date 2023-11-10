@@ -1,0 +1,19 @@
+Team ID = 1178
+Trained weights drive link = https://drive.google.com/file/d/1SFkEKeVLhJVzPiGv9JRWX2K55ERDWODU/view?usp=drive_link   
+###############################################################################
+'''
+Please write the complete steps taken by your team explaining how you completed Task 2C. It is adviced to be as elaborate as possible.
+
+1. First we checked the approximate size of each event which is present on the given sample     
+    image. Every event is around 51*51 pixels, so we took 50*50 pixels(rounded off) . Now we have 
+    learnt syntax by browsing through different websites( geeksforgeeks ,etc..) for how to crop an 
+    image in numpy, PyTorch and we cropped those 5 events and saved them in the event_list. 
+2. Since the given arena is read using openCV, so cv.imread() will import it as numpy array,    
+    whereas trained model takes input only PyTorch tensors. We cant directly transform a numpy 
+    array of a color image to PyTorch tensor , because in PyTorch images have the format (C,H,W) 
+    whereas in numpy they have the format (H,W,C) and also RGB becomes BGR when you 
+    transform from numpy to PyTorch. So after browsing through different resources, we finally 
+    figured out how to transform that numpy array properly into PyTorch tensor (so that we dont 
+    encounter the dimensions rotated issue or BGR-RGB issue). 
+3. Now we used the similar trained model that we used in task_2b 
+4. Finally used the trained model to classify the images of event_list 
